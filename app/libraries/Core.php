@@ -15,6 +15,7 @@ class Core
    {
       // print_r($this->getUrl());
       $url = $this->getUrl();
+
       //Look into controllers for first value
       if (!empty($url) && file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
          $this->currentController = ucwords($url[0]);
@@ -25,6 +26,26 @@ class Core
 
       //instantiate controller
       $this->currentController = new $this->currentController();
+
+
+
+      //check for second part of url
+      if (isset($url[1])) {
+         //check if method exists in controller
+         if (method_exists($this->currentController, $url[1])) {
+            $this->currentMethod = $url[1];
+            unset($url[1]);
+         }
+      }
+      //get parameters
+      $this->params = $url ? array_values($url) : [];
+
+      //call a callback with array of params
+      echo '<pre>';
+      var_dump($this->params);
+      echo '</pre>';
+      call_user_func([$this->currentController, $this->currentMethod], $this->params);
+      //NOTE: basically same as ---> $this->currentController->{$this->currentMethod}($this->params);
    }
 
    public function getUrl()
