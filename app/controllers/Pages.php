@@ -10,6 +10,6 @@ class Pages
    }
    public function about($params)
    {
-      echo 'this is about ' . $params[0] . '<br>';
+      echo 'this is about ' .  ($params[0] ?? '') . '<br>';
    }
 }
