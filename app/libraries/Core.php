@@ -25,7 +25,7 @@ class Core
       require_once '../app/controllers/' . $this->currentController . '.php';
 
       //instantiate controller
-      $this->currentController = new $this->currentController();
+      $this->currentController = new $this->currentController(); //eg new Pages()
 
 
 
@@ -41,9 +41,7 @@ class Core
       $this->params = $url ? array_values($url) : [];
 
       //call a callback with array of params
-      echo '<pre>';
-      var_dump($this->params);
-      echo '</pre>';
+
       call_user_func([$this->currentController, $this->currentMethod], $this->params);
       //NOTE: basically same as ---> $this->currentController->{$this->currentMethod}($this->params);
    }
@@ -51,6 +49,9 @@ class Core
    public function getUrl()
    {
       if (isset($_GET['url'])) {
+         echo '<pre>';
+         var_dump($_GET);
+         echo '</pre>';
          $url = rtrim($_GET['url'], '/');
          //The FILTER_SANITIZE_URL filter removes all illegal URL characters from a string.
          $url = filter_var($url, FILTER_SANITIZE_URL);
