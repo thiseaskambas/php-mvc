@@ -2,7 +2,7 @@
 
 A PHP MVC framework
 
-##Details :
+## Details :
 
 ### app/config.php
 
