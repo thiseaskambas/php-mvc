@@ -15,11 +15,11 @@ class Controller
    //load view
    public function view($view, $data = [])
    {
-      if (file_exists("../app/views$view.php")) {
-         require_once "../app/views$view.php";
+      if (file_exists("../app/views/$view.php")) {
+         require_once "../app/views/$view.php";
       } else {
          //if view does not exist
-         die("View does not exist");
+         die("❌ View does not exist");
       }
    }
 }
