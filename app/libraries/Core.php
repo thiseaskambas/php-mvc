@@ -32,7 +32,7 @@ class Core
       //check for second part of url
       if (isset($url[1])) {
          //check if method exists in controller
-         if (method_exists($this->currentController, $url[1])) {
+         if (method_exists($this->currentController, $url[1])) { //eg Pages -> about()
             $this->currentMethod = $url[1];
             unset($url[1]);
          }
@@ -42,16 +42,13 @@ class Core
 
       //call a callback with array of params
 
-      call_user_func([$this->currentController, $this->currentMethod], $this->params);
+      call_user_func([$this->currentController, $this->currentMethod], $this->params); //eg Pages->about($params)
       //NOTE: basically same as ---> $this->currentController->{$this->currentMethod}($this->params);
    }
 
    public function getUrl()
    {
       if (isset($_GET['url'])) {
-         echo '<pre>';
-         var_dump($_GET);
-         echo '</pre>';
          $url = rtrim($_GET['url'], '/');
          //The FILTER_SANITIZE_URL filter removes all illegal URL characters from a string.
          $url = filter_var($url, FILTER_SANITIZE_URL);
