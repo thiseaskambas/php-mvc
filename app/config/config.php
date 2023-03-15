@@ -1,8 +1,8 @@
 <?php
-// App Root 
+// App Root -> for including stuff from within ./app
 define('APPROOT', dirname(dirname(__FILE__)));
 
-//URL root -> replace it before deploy
+//URL root -> for including stuff from within ./public
 define('URLROOT', 'http://localhost/phpmvc');
 
 //Site name
