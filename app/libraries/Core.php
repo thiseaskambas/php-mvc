@@ -42,8 +42,7 @@ class Core
 
       //call a callback with array of params
 
-      call_user_func([$this->currentController, $this->currentMethod], $this->params); //eg Pages->about($params)
-      //NOTE: basically same as ---> $this->currentController->{$this->currentMethod}($this->params);
+      call_user_func_array([$this->currentController, $this->currentMethod], $this->params); //eg Pages->about(...$params)
    }
 
    public function getUrl()
